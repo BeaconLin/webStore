@@ -1,0 +1,39 @@
+<!-- <script>
+    // 实现 指定时间后 执行回调函数
+    function timeout(ms) {
+        return new Promise(function(resolve, reject) {
+            // 第三个参数将作为回调函数的参数传入
+            setTimeout(resolve, ms, 'success')
+        })
+    }
+    // 定义回调函数resolve
+    timeout(1000).then(value => console.log(value))
+</script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function timer(ms) {
+        return new Promise(function(resolve, reject) {
+            setTimeout(resolve, ms, 'success')
+        })
+    }
+    timer(2000).then(value => console.log(value))
+</script>

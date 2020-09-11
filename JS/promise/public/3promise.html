@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //异步加载图片函数的包装
+        function loadImageAsync(url) {
+            return new Promise(function(resolve, reject) {
+                const image = new Image()
+                    //onload和onerror都是img标签的属性
+                image.onload = function() {
+                    //图片加载完触发
+                    resolve(image)
+                }
+                image.onerror = function() {
+                        //图片加载错误触发
+                        reject(new Error('Could not load image.'))
+                    }
+                    //image.onload=resolve
+                    //image.onerror=reject
+                image.src = url
+            })
+        }
+
+        loadImageAsync('../../img/11.jpg').then(img => {
+            document.body.append(img)
+            console.log(img)
+        }).catch(function(error) {
+            console.log(error)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            name: '小明',
+            age: 18,
+            sex: "男",
+            tel: "18911450210"
+        }
+        var arr = ['小兰', '小德', '小智']
+        for (var attr in obj) {
+            console.log(attr) //key
+            console.log(obj[attr]) //value
+        }
+
+        for (let key in arr) {
+            console.log(key) //索引012
+            console.log(arr[key]) //数组项 '小兰'
+        }
+
+        //对象不能使用for in
+        for (let item of arr) {
+            console.log(item)
+        }
+        //forEach只是数组的函数
+        arr.forEach(item => {
+            console.log(item)
+        })
+        arr.forEach((item, index, self) => {
+            console.log(item)
+            console.log(index)
+            console.log(self)
+        })
+    </script>
+</body>
+
+</html>

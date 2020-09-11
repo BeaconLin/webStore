@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function DoublyLinkedList() {
+
+            function Node(data) {
+                this.data = data
+                this.prev = null
+                this.next = null
+            }
+
+            this.header = null
+            this.tail = null
+            this.length = 0
+
+            //1向尾部添加一个新的项
+            DoublyLinkedList.prototype.append = function(data) {
+                var newNode = new Node(data)
+                if (this.length === 0) {
+                    this.header = newNode
+                    this.tail = newNode
+                } else {
+                    newNode.prev = this.tail
+                    this.tail.next = newNode
+                    this.tail = newNode
+                }
+                this.length += 1;
+            };
+            //2.inser插入元素
+            DoublyLinkedList.prototype.insert = function(position, data) {
+                //越界判断
+                if (position < 0 || position > this.length) return false
+                var newNode = new Node(data);
+                //链表为空，插入第一个节点
+                if (this.length === 0) {
+                    this.header = newNode
+                    this.tail = newNode
+                    this.length += 1;
+                } else {
+                    //插入到第一个位置
+                    if (position == 0) {
+                        this.header.prev = newNode
+                        newNode.next = this.header
+                        this.header = newNode
+                    } else if (position === this.length) {
+                        //插入到最后一个位置
+                        this.tail.next = newNode
+                        newNode.prev = this.tail
+                        this.tail = newNode
+                    } else {
+                        var current = this.header
+                        while (position-- > 1) {
+                            current = current.next
+                        }
+                        newNode.next = current.next
+                        newNode.prev = current
+                        current.next.prev = newNode
+                        current.next = newNode
+                    }
+                    this.length += 1;
+                }
+
+
+            };
+            //3.get获取某个位置的数据
+            DoublyLinkedList.prototype.get = function(position) {
+                if (position < 0 || position >= this.length) return null
+                var current = this.header
+                while (position-- > 0) {
+                    current = current.next
+                }
+                return current.data
+            };
+            //4.返回给定元素在链表中的索引indexOf
+            //5.修改某个位置元素update(position,data)
+            //6.removeAt
+            //7.remove(data)
+            //8.isEmpty
+            //9.size()
+            //toString方法
+            DoublyLinkedList.prototype.toString = function() {
+                return this.backwardString()
+            };
+            //从尾部到头部遍历得到字符串
+            DoublyLinkedList.prototype.forwardString = function() {
+                var str = ''
+                var current = this.tail
+                while (current) {
+                    str += current.data + ' '
+                    current = current.prev
+                }
+                return str
+            };
+            //从头到尾遍历为字符串
+            DoublyLinkedList.prototype.backwardString = function() {
+                var str = ''
+                var current = this.header
+                while (current) {
+                    str += current.data + ' '
+                    current = current.next
+                }
+                return str
+            }
+
+        }
+
+
+        //测试
+        var list = new DoublyLinkedList()
+        list.append('小兰')
+        list.append('小德')
+        list.append('小智')
+        list.append('小田')
+        list.append('小园')
+        alert(list)
+        console.log(list.toString())
+        console.log(list.forwardString())
+        console.log(list.backwardString())
+        list.insert(3, '小智智')
+        console.log(list.toString())
+        console.log(list.get(4))
+    </script>
+</body>
+
+</html>

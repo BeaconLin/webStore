@@ -1,0 +1,21 @@
+<script>
+    var a = "hello";
+    try {
+        alert(a);　　　　　　　　 //如果是不存在的变量，则抛出异常，将直接跳到catch里面执行(throw定义异常也不会被抛出)　　　　　
+        throw "抛出一个异常";　　 //定义抛出异常
+        alert("world"); //只要上面的语句出现错误或者throw语句这句将不会被执行
+    } catch (err) {　　　　　　 //如果try中发现错误，则执行catch中的语句，如果没有错误，则跳过catch
+        alert("catch:" + err) //接收设置的throw错误异常，如果没有则抛出根据情况默认错误
+        alert("错误弹出"); //被执行
+    } finally {
+        alert("无论如何都会执行");
+    }
+
+
+    // var b="world";
+    // if(b){
+    //     document.write(b);
+    // }else{
+    //     alert("error");
+    // }
+</script>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白屏</title>
+    <!-- 为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，
+        并不会等到所有的html都解析完成之后再去构建和布局render树。
+        它是解析完一部分内容就显示一部分内容，
+        同时，可能还在通过网络下载其余内容。
+        在Render树未完全绘制并渲染之前会出现白屏 -->
+    <!-- 优化白屏：
+        1.遵循XHTML编码规则，错误的标签在解析的过程中，浏览器需要花费很多时间
+        去进行容错处理（一些push和pop操作），会在构建DOM树的时间花掉额外的时间。
+        2.优化HTML代码，减少代码层次
+        3.优化css，减少样式计算所需要的时间
+        4.缩短第一屏的内容，后几屏的内容用js异步+判断滚动条动作载入，
+        减少构建Render树和布局render树的时间 -->
+    <script type="text/javascript">
+        // 不兼容performance.timing 的浏览器，如IE8
+        window.pageStartTime = Date.now();
+    </script>
+    <!-- 页面css资源 -->
+    <link rel="stylesheet" href="normalize.css">
+    <script type="text/javascript">
+        // 白屏时间结束点
+        window.firstPaint = Date.now();
+    </script>
+</head>
+
+<body>
+    <!-- 首屏可见模块1 -->
+    <div class="module-1">
+        <div>
+            <div>
+                <h1>标题</h1>
+                <h2>副标题</h2>
+                <div>
+                    <div>嵌套多级</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 首屏可见模块2 -->
+    <div class="module-2">
+        <img src="img/11.jpg" alt="">
+        <img src="img/22.jpg" alt="">
+        <img src="img/33.jpg" alt="">
+        <img src="img/44.jpg" alt="">
+    </div>
+    <script type="text/javascript">
+        // window.firstScreen = Date.now();
+    </script>
+    <script type="text/javascript">
+        // 白屏时间
+        console.log(firstPaint - pageStartTime);
+        //首屏时间 1 只适用于不需要通过拉取数据以及不考虑图片等资源加载的情况。
+        // console.log(firstScreen - pageStartTime);
+        //首屏时间 2 统计首屏内图片完成加载的时间 
+        window.onload = function() {
+            // window.onload在页面加载完的时候立即执行
+            console.log('--------')
+            window.firstScreen = Date.now()
+            console.log(firstScreen - pageStartTime);
+        }
+    </script>
+</body>
+
+</html>

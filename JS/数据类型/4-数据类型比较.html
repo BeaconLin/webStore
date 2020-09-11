@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log('有string且不全为数字,和数字比较时要转化为数字NaN，结果也是NaN')
+        console.log(NaN == undefined) //NaN
+        console.log(NaN === undefined) //NaN !== NaN 公理
+        console.log('有string且不全为数字,和其他比较，要将其他类型转换为string?????????')
+        console.log('true' == true) //false ??
+        console.log('true' === true) //false
+        console.log('有string且全为数字,都转为数字')
+        console.log(1 == "1") //true
+        console.log(1 === "1") //false
+        console.log("1" == true) //true 
+        console.log('没有string,都转换为数字')
+        console.log(1 == true) //true 都转化成数字
+    </script>
+</body>
+
+</html>

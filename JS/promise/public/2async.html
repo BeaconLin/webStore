@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        async function timeout(ms) {
+            // new Promise是立即执行的
+            await new Promise((resolve) => {
+                setTimeout(resolve, ms);
+            });
+
+        }
+        console.log(timeout(1000))
+        async function asyncPrint(value, ms) {
+            await timeout(ms); //等本行结束后再向下执行
+            console.log(value);
+        }
+
+        asyncPrint('hello world', 1000);
+    </script>
+</body>
+
+</html>

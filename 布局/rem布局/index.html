@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 将整个屏幕划分为15份（10，20都可）  */
+        /* rem值：元素px/（屏宽/份数） */
+        
+        @media screen and (min-width:320px) {
+            html {
+                font-size: 21.33px;
+            }
+        }
+        
+        @media screen and (min-width:750px) {
+            html {
+                font-size: 50px;
+            }
+        }
+        
+        div {
+            width: 2rem;
+            height: 2rem;
+            background-color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 根据不同的设备，让里面的元素等比例缩放，适用于不同宽度的设备 -->
+    <!-- less+媒体查询+rem -->
+
+    <div></div>
+</body>
+
+</html>

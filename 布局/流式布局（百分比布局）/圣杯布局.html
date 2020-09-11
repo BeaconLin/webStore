@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        header {
+            color: white;
+            font-size: large;
+            background-color: #222;
+        }
+        
+        .center {
+            background-color: #999;
+        }
+        
+        .left {
+            background-color: #666;
+        }
+        
+        .right {
+            background-color: #666;
+        }
+        
+        footer {
+            color: white;
+            font-size: large;
+            background-color: #222;
+        }
+        
+        .center,
+        .left,
+        .right {
+            float: left;
+        }
+        
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        
+        .wrapper {
+            padding: 0 100px;
+        }
+        
+        .left {
+            width: 100px;
+            margin-left: -100%;
+            position: relative;
+            left: -100px;
+        }
+        
+        .right {
+            width: 100px;
+            margin-left: -100px;
+            position: relative;
+            right: -100px;
+        }
+        
+        .center {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 左右边栏固定，中间自适应，并且中间优先加载 -->
+    <header>头部</header>
+    <div class="clearfix wrapper">
+        <div class="center">中间区域自适应</div>
+        <div class="left">左边区域</div>
+        <div class="right">右边区域</div>
+    </div>
+    <footer>底部</footer>
+</body>
+
+</html>

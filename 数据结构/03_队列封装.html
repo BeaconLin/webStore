@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //队列封装
+        function Queue() {
+            this.items = [];
+            //1.尾部加入队列元素
+            Queue.prototype.enqueue = function(element) {
+                this.items.push(element)
+
+            };
+            //2。删除前端元素
+            Queue.prototype.dequeue = function() {
+                return this.items.shift()
+            };
+            //3，查看前端元素
+            Queue.prototype.front = function() {
+                return this.items[0]
+            };
+            //4.查看队列是否为空
+            Queue.prototype.isEmpty = function() {
+                return this.items.length == 0
+            };
+            //5.查看队列元素的个数
+            Queue.prototype.size = function() {
+                return this.items.length
+            };
+            //6.toString方法
+            Queue.prototype.toString = function() {
+                return this.items.join(' ')
+            };
+        }
+        //测试使用
+        var queue = new Queue()
+        queue.enqueue('你')
+
+        queue.enqueue('好')
+        queue.enqueue('吗')
+        queue.enqueue('?')
+        alert(queue)
+        console.log(queue)
+        queue.dequeue()
+        console.log(queue)
+        var queueStr = queue.toString()
+        console.log(queueStr)
+        console.log(queue.front())
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        /* #box1{
+        height: 50px;
+        width: 50px;
+        background-color: #00f;
+    } */
+        
+        #myCanvas {
+            border: 1px solid #111;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="box1"></div> -->
+    <canvas id="myCanvas" width="200px" height="200px"></canvas>
+    <script type="text/javascript">
+        var c = document.getElementById('myCanvas')
+        var cxt = c.getContext("2d")
+        cxt.moveTo(10, 10);
+        cxt.lineTo(150, 50)
+        cxt.lineTo(150, 180);
+        cxt.lineTo(10, 140)
+        cxt.lineTo(10, 10)
+        cxt.stroke()
+    </script>
+</body>
+
+</html>

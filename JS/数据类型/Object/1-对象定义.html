@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //new关键字创建
+        var person = new Object()
+        person.name = "小明"
+        person.sleep = function(n) {
+            console.log('小明睡了' + n + '小时.')
+        };
+        //字面量创建
+        var dog = {
+            name: "golden",
+            skill: function() {
+                console.log('wangwangwang!')
+            }
+        };
+        //构造函数创建
+        function Camera(brand, price) {
+            this.brand = brand
+            this.price = price
+            this.shoot = function(n) {
+                // console.log(brand + '咔嚓！')
+                console.log(this.brand + ':kacha x ' + n)
+            }
+        }
+        var canon = new Camera('canon', 9999)
+        console.log(canon)
+
+        //访问对象的属性和方法
+        console.log(canon.brand)
+        console.log(canon["brand"])
+        canon.shoot(100)
+    </script>
+</body>
+
+</html>

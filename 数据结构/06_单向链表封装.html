@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //链表结构
+        function LinkedList() {
+            //内部节点构造函数
+            function Node(data) {
+                this.data = data
+                this.next = null
+            };
+            //属性
+            this.header = null;
+            this.Length = 0;
+            //1.添加节点的方法
+            LinkedList.prototype.append = function(data) {
+                var newNode = new Node(data)
+                if (this.Length == 0) {
+                    this.header = newNode
+                } else {
+                    //current开始指向头部
+                    var current = this.header
+                    while (current.next) {
+                        current = current.next
+                    }
+                    //current找到最后一个节点,指向添加的节点
+                    current.next = newNode;
+                }
+                this.Length += 1;
+            };
+            //2.toString方法
+            LinkedList.prototype.toString = function() {
+                var listString = '';
+                // 定义一个指向头部的变量
+                var current = this.header
+                while (current) {
+                    listString += current.data + ' '
+                    current = current.next
+                }
+                return listString
+            };
+            //3.insert方法 插入指定位置
+            LinkedList.prototype.insert = function(position, data) {
+                // 先对position进行越界判断，负数，大于链表长度的数
+                if (position < 0 || position > this.Length) return false
+                var newNode = new Node(data);
+                //如果插入到第一个
+                if (position == 0) {
+                    newNode.next = this.header.next
+                    this.header = newNode
+                    this.Length++;
+                } else {
+                    var index = 0
+                    var current = this.header
+
+                    // var previous = null
+                    // while (index++ < position) {
+                    //     //插入节点前一个元素
+                    //     previous = current;
+                    //     // 插入节点后一个元素
+                    //     current = current.next
+                    // }
+                    // previous.next = newNode
+                    // newNode.next = current;
+
+                    //自己改进
+                    while (index++ < position - 1) {
+                        current = current.next
+                    }
+                    newNode.next = current.next
+                    current.next = newNode
+                }
+                this.Length += 1
+            };
+            //4.获取指定位置的元素
+            LinkedList.prototype.get = function(position) {
+                if (position < 0 || position >= this.Length) return null
+                var current = this.header
+                while (position--) {
+                    current = current.next
+                }
+                return current.data
+            };
+            //5.查找元素在链表中的索引
+            LinkedList.prototype.indexOf = function(data) {
+                var index = 0
+                var current = this.header
+                while (current !== null) {
+                    if (current.data === data) {
+                        return index
+                    }
+                    index += 1
+                    current = current.next
+                }
+                return -1
+            };
+            //6.修改某个位置的元素
+            LinkedList.prototype.update = function(position, newData) {
+                if (position < 0) return false
+                var current = this.header
+                while (position-- > 0) {
+                    current = current.next
+                }
+                current.data = newData
+                return true
+            };
+            //7.移除链表中某位置的节点
+            LinkedList.prototype.removeAt = function(position) {
+                if (position < 0) return false
+                if (position === 0) {
+                    this.header = this.header.next
+                    this.Length--;
+                    return true
+                }
+                var current = this.header
+                while (position-- > 1) {
+                    current = current.next
+                }
+                current.next = current.next.next
+                this.Length--;
+                return true
+            };
+            //8.删除链表中某个元素
+            LinkedList.prototype.remove = function(data) {
+                //可以调用已经定义的方法
+                var position = this.indexOf(data)
+                this.Length--;
+                return this.removeAt(position)
+
+            };
+            //9判断链表是否为空
+            LinkedList.prototype.isEmpty = function() {
+                if (this.length === 0) {
+                    return true
+                } else {
+                    return false
+                }
+            };
+
+            //10.返回链表长度
+            LinkedList.prototype.size = function() {
+                return this.Length
+            }
+
+        }
+        var list = new LinkedList()
+        list.append('小兰')
+        list.append('小德')
+        list.append('小智')
+        list.append('小田')
+        list.append('小猪')
+        console.log(list.toString())
+        list.insert(2, '小樱')
+        console.log(list.toString())
+        console.log(list.get(2))
+        console.log(list.indexOf('小田'))
+        list.update(3, '小智智')
+        console.log(list.toString())
+        list.removeAt(3)
+        console.log(list.toString())
+        list.remove('小兰')
+        console.log(list.toString())
+        console.log(list.isEmpty())
+        console.log(list.toString())
+        console.log(list.size())
+    </script>
+</body>
+
+</html>

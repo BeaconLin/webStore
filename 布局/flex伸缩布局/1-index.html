@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex</title>
+    <style type="text/css">
+        .container>div:nth-child(2n) {
+            height: 100px;
+            width: 100px;
+            background-color: #333;
+        }
+        
+        .container>div:nth-child(2n+1) {
+            height: 100px;
+            width: 100px;
+            background-color: #888;
+        }
+        
+        .container {
+            width: 500px;
+            height: 200px;
+            display: flex;
+            background-color: thistle;
+            /* justify-content: center; */
+            /* justify-content: flex-start; */
+            /* justify-content: flex-end; */
+            /* justify-content: space-around; */
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .enter {
+            width: 500px;
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: space-around;
+            background-color: #069;
+        }
+        
+        .enter>div:nth-child(2n) {
+            height: 100px;
+            width: 100px;
+            background-color: #333;
+            margin: 10px;
+        }
+        
+        .enter>div:nth-child(2n+1) {
+            height: 100px;
+            width: 100px;
+            background-color: #999;
+            margin: 10px;
+        }
+        
+        .spans {
+            height: 150px;
+            width: 500px;
+            background-color: wheat;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        span {
+            height: 50px;
+            width: 60px;
+            border: 2px solid #333;
+        }
+        
+        .child {
+            height: 200px;
+            width: 80%;
+            background-color: #999;
+            display: flex;
+            align-items: stretch;
+        }
+        
+        .child div:nth-child(1) {
+            /* height: 100px; */
+            width: 100px;
+            background-color: #444;
+        }
+        
+        .child div:nth-child(5) {
+            /* height: 100px; */
+            width: 100px;
+            background-color: #444;
+        }
+        
+        .flexbox {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 开启flex布局，子元素为行内元素的宽高开始起作用 -->
+    <content class="container">
+        <div class="box1">我是第1</div>
+        <div class="box2">我是第2</div>
+        <div class="box3">我是第3</div>
+        <div class="box4">我是第4</div>
+    </content>
+    <section class="enter">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+        <div class="box">box4</div>
+        <div class="box">box5</div>
+        <div class="box">box6</div>
+        <div class="box">box7</div>
+        <div class="box">box8</div>
+    </section>
+    <section class="spans">
+        <span>span1</span>
+        <span>span2</span>
+        <span>span3</span>
+        <span>span4</span>
+    </section>
+    <section class="child">
+        <div>div1</div>
+        <div class="flexbox">div2</div>
+        <div class="flexbox">div3</div>
+        <div class="flexbox">div4</div>
+        <div>div5</div>
+    </section>
+</body>
+
+</html>

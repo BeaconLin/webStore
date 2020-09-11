@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>art-template</title>
+    <style type="text/css">
+        .innerUl {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="ulList">
+
+    </ul>
+    <script type="text/javascript">
+        var list = [{
+            name: "小张",
+            time: "12:22"
+        }, {
+            name: "小刘",
+            time: "12:29"
+        }, {
+            name: "小李",
+            time: "12:26"
+        }, {
+            name: "小孙",
+            time: "12:22"
+        }, {
+            name: "小周",
+            time: "12:20"
+        }]
+        var ulList = document.querySelector("#ulList")
+        for (var i = 0; i < list.length; i++) {
+            var li = document.createElement('li')
+            var ul = document.createElement('ul')
+            ul.setAttribute('class', 'innerUl')
+            li.appendChild(ul)
+            for (var k in list[i]) {
+                var innerLi = document.createElement('li')
+                innerLi.innerHTML = k + ':' + list[i][k]
+                ul.append(innerLi)
+            }
+            ulList.appendChild(li)
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        html,
+        body {
+            height: 500%;
+        }
+    </style>
+</head>
+
+<body>
+    <button id='btn'>防抖函数</button>
+    <script>
+        // 节流 throttle
+        function throttle(fn, delay) {
+            var lastTime = 0;
+            return function() {
+                var nowTime = Date.now();
+                if (nowTime - lastTime > delay) {
+                    fn.call(this);
+                    //使得fn内部的this指向throttle函数内部的指向
+                }
+                lastTime = nowTime;
+            }
+        }
+        document.onscroll = throttle(function() {
+            console.log('scroll被执行' + Date.now())
+        }, 500)
+
+        //防抖 可以限制ajax请求的数量
+        function debounce(fn, delay) {
+            var timer = null;
+            return function() {
+                //清除上一次的延时器
+                clearTimeout(timer);
+                //重新设置本次的延时器
+                timer = setTimeout(function() {
+                    fn.call(this)
+                }, delay)
+            }
+        }
+        var btn = document.querySelector('#btn')
+        btn.addEventListener('click', debounce(function() {
+            console.log('点击被触发')
+        }, 500))
+    </script>
+</body>
+
+</html>

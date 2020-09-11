@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/handlebars.min.js"></script>
+</head>
+
+<body>
+
+    <ul class="list-ul">
+    </ul>
+
+    <script type="text/x-handlebars-template" id="my-template">
+        {{#each list}}
+        <li>
+            <span>name:{{name}}</span>
+            <span>time:{{time}}</span>
+        </li>
+        {{/each}}
+    </script>
+
+
+    <script type="text/javascript">
+        var msg = {
+            "list": [{
+                name: "小张",
+                time: "12:22"
+            }, {
+                name: "小刘",
+                time: "12:22"
+            }, {
+                name: "小李",
+                time: "12:22"
+            }, {
+                name: "小孙",
+                time: "12:22"
+            }, {
+                name: "小周",
+                time: "12:22"
+            }]
+        }
+        var tpl = $("#my-template").html()
+        var template = Handlebars.compile(tpl)
+        var html = template(msg)
+        $('.list-ul').html(html)
+    </script>
+</body>
+
+</html>

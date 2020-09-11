@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //slice不改变原数组，返回新数组
+        var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        var sliceArr1 = arr.slice(-4) //[6, 7, 8, 9]
+        var sliceArr2 = arr.slice(4) //[4, 5, 6, 7, 8, 9]
+        var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        var sliceArr3 = arr.slice(2, 7) // [2, 3, 4, 5, 6]
+        var sliceArr4 = arr.slice(-6, -3) // [4, 5, 6]
+        var sliceArr5 = arr.slice(-3, 4) // []
+        var sliceArr6 = arr.slice(3, -2) // [3, 4, 5, 6, 7]
+
+        console.log(sliceArr1)
+        console.log(sliceArr2)
+        console.log(sliceArr3)
+        console.log(sliceArr4)
+        console.log(sliceArr5)
+        console.log(sliceArr6);
+        console.log('------------------------------------------');
+        //splice会改变原数组，返回值为改变的部分
+        var arr1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        var arr2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        var spliceArr1 = arr1.splice(5) // [5, 6, 7, 8, 9]
+        var spliceArr2 = arr2.splice(-4) // [6, 7, 8, 9]
+
+        console.log(arr1) // [0, 1, 2, 3, 4]
+        console.log(arr2) // [0, 1, 2, 3, 4, 5]
+        console.log('删除------------------------------------------');
+        var arr3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        var arr4 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        var spliceArr3 = arr3.splice(3, 2) // [3, 4]
+        var spliceArr4 = arr4.splice(-6, -3) // [4, 5, 6]
+        console.log(spliceArr3)
+        console.log(spliceArr4)
+        console.log(arr3) // [0, 1, 2, 3, 4]
+        console.log(arr4) // [0, 1, 2, 3, 4, 5]
+        var arr5 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        var arr6 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        var arr7 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        var spliceArr5 = arr5.splice(4, 0, 3.3, 3.6) // []
+        var spliceArr6 = arr6.splice(3, 2, 100, 200) // [3,4]
+        var spliceArr7 = arr7.splice(-6, 2, 111, 222, 333) // [4,5]
+        console.log(arr5) // [0, 1, 2, 3, 3.3, 3.6, 4, 5, 6, 7, 8, 9]
+        console.log(arr6) // [0, 1, 2, 100, 200, 5, 6, 7, 8, 9]
+        console.log(arr7) // [0, 1, 2, 3, 111, 222, 333, 6, 7, 8, 9]
+        var spliceArr5 = arr1.splice(2, 2) //索引2开始删除2个
+        console.log(spliceArr1)
+        console.log(arr1) //改变后的原数组
+        var spliceArr2 = arr2.splice(-4, 2) //索引length+(-4)开始删除2个
+        console.log(spliceArr2) //删除的元素
+        console.log(arr2) //改变后的原数组
+        var spliceArr3 = arr3.splice(2, 2, 100, 200, 300) //索引2开始删除2个
+        console.log(spliceArr3) //删除的元素
+        console.log(arr3); //改变后的原数组
+        console.log('------------------------------------------');
+
+        //字符串
+        var string1 = 'AaBbCcDdEe'
+        var string2 = 'AaBbCcDdEe'
+        var string3 = 'AaBbCcDdEe'
+        var string4 = 'AaBbCcDdEe'
+        var str1 = string1.slice(4) //不改变原字符串
+        var str2 = string1.slice(-3) ////索引length+(-3)开始到最后,不改变原字符串
+        console.log(str1) //索引4开始到最后
+        console.log(str2) //length+(-3)开始到最后
+        console.log(string1) //不改变原字符串
+        var str3 = string1.slice(4, 7) //不改变原字符串
+        var str4 = string1.slice(3, -3) //3到length+(-3)之前
+        console.log(str3)
+        console.log(str4)
+        console.log('--------')
+        var str5 = string2.substring(4) //CcDdEe
+        var str6 = string2.substring(-5) //负数看作0
+        var str7 = string2.substring(4, 7) //4开始到7之前
+        var str8 = string2.substring(5, -7) //前5位 
+        console.log(str5)
+        console.log(str6)
+        console.log(str7)
+        console.log(str8)
+        console.log('--------')
+        var str9 = string2.substr(4)
+        var str10 = string2.substr(-3) //索引length+(-5)开始到最后
+        var str11 = string2.substr(4, 7) //4开始到7之前
+        var str12 = string2.substr(5, -1) // "" 空字符串
+        console.log(str9)
+        console.log(str10)
+        console.log(str11)
+        console.log(str12) //""
+        console.log(typeof(str12))
+        console.log(string4) //不改变原字符串
+    </script>
+</body>
+
+</html>

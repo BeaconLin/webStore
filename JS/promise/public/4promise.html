@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">按钮</button>
+    <script>
+        // 异步实现Ajax操作
+        const getJSON = function(url) {
+            const promise = new Promise(function(resolve, reject) {
+                // 每当 readyState 改变时，就会触发 onreadystatechange 事件。 
+                const handle = function() {
+                    //判断ajax请求状态码 4:请求已完成
+                    if (this.readyState !== 4) {
+                        return
+                    }
+                    //判断http状态码
+                    if (this.status === 200) {
+                        resolve(this.response)
+                    } else {
+                        reject(new Error(this.statusText))
+                    }
+                }
+                const client = new XMLHttpRequest()
+                    //配置请求参数
+                client.open("GET", url)
+                    //每当readyState发生改变都会触发
+                client.onreadystatechange = handle()
+                    //定义响应类型
+                    // client.responseType = "json"
+                    //设置请求参数格式
+                    // client.setRequestHeader("Content-Type", "application/json")
+                client.send() //发送请求
+
+            })
+            return promise
+        }
+        const btn = document.querySelector("#btn")
+        btn.onclick = function() {
+            getJSON("http://localhost:3000/getJSON1").then(function(response) {
+                // then定义状态改变时的回调函数 
+                console.log('We get the content:' + response)
+            }).catch(function(error) {
+                //catch定义失败时的回调函数
+                console.log('Sorry, there is no response:' + error)
+            })
+        }
+    </script>
+</body>
+
+</html>

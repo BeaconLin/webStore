@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //链地址法
+        function HashTable() {
+            //哈希表存放数据
+            this.storage = [];
+            //当前哈希表存放数据的长度 计算loadFactor 进行扩容或者减少容量
+            this.count = 0;
+            //数组长度
+            this.limit = 7;
+
+            HashTable.prototype.hashFunc = function(str, size) {
+                //1.定义hashCode变量
+                var hashCode = 0;
+                //2.霍纳法则
+                for (var i = 0; i < str.length; i++) {
+                    hashCode = 37 * hashCode + str.charCodeAt(i)
+                }
+                //3.取余操作
+                var index = hashCode % size
+                return index
+            }
+
+            // 1 - 插入和修改操作
+            HashTable.prototype.put = function(key, value) {
+                // index是哈希表中的索引
+                var index = this.hashFunc(key, this.limit);
+                //取出存放数据的桶 bucket
+                var bucket = this.storage[index];
+                //判断bucket是否为空
+                if (bucket == null) {
+                    bucket = [];
+                    this.storage[index] = bucket;
+                }
+                //判断是否为修改数据 查找是否有这个数据
+                for (var i = 0; i < bucket.length; i++) {
+                    var tuple = bucket[i]
+                    if (tuple[0] == key) {
+                        tuple[1] = value
+                        return
+                    }
+                }
+                //添加操作
+                bucket.push([key, value])
+                this.count += 1;
+                //判断是否需要扩容操作
+                if (this.count > this.limit * 0.75) {
+                    //用质数作为新的容量
+                    var newPrime = this.getPrime(this.limit * 2)
+                    this.resize(newPrime)
+                }
+
+            };
+
+            // 2 - 获取操作
+            HashTable.prototype.get = function(key) {
+                var index = this.hashFunc(key, this.limit)
+                var bucket = this.storage[index]
+                if (bucket == null) {
+                    return null
+                }
+                for (var i = 0; i < bucket.length; i++) {
+                    var tuple = bucket[i]
+                    if (tuple[0] == key) {
+                        return tuple[1]
+                    }
+                }
+                //没有查找到时
+                return null
+
+            };
+
+            // 3 - 删除操作
+            HashTable.prototype.remove = function(key) {
+                var index = this.hashFunc(key, this.limit)
+                var bucket = this.storage[index]
+                if (bucket == null) {
+                    return false
+                }
+                for (var i = 0; i < bucket.length; i++) {
+                    var tuple = bucket[i]
+                    if (tuple[0] == key) {
+                        tuple.splice(i, 1)
+                        this.count--;
+                        //返回被删除的项
+                        return tuple[1]
+
+                        //缩小容量
+                        if (this.limit > 7 && this.count < this.limit * 0.25) {
+                            var newPrime = this.getPrime(Math.floor(this.limit / 2))
+                            this.resize(newPrime)
+                        }
+                    }
+                }
+                return false
+
+            };
+
+            // 4 - 判断哈希表是否为空
+            HashTable.prototype.isEmpty = function() {
+
+            };
+            // 5 - 获取哈希表长度
+            HashTable.prototype.size = function() {
+
+            };
+            // 6 - 哈希表的扩容
+            HashTable.prototype.resize = function(newLimit) {
+                //保存旧数组的值
+                var oldStorage = this.storage;
+                //重置新数组
+                this.limit = newLimit;
+                this.storage = [];
+                this.count = 0;
+                //遍历旧数组
+                for (var i = 0; i < oldStorage.length; i++) {
+                    var bucket = oldStorage[i];
+                    if (bucket == null) {
+                        continue
+                    }
+                    for (var j = 0; j < bucket.length; j++) {
+                        var tuple = bucket[j];
+                        this.put(tuple[0], tuple[1])
+                    }
+                }
+            };
+            // 判断某个数字是否为质数？
+            HashTable.prototype.isPrime = function(num) {
+                for (var i = 2; i <= parseInt(Math.sqrt(num)); i++) {
+                    if (num % i === 0) {
+                        return false
+                    }
+                }
+                return true
+            };
+            //获取质数
+            HashTable.prototype.getPrime = function(num) {
+                while (!this.isPrime(num)) {
+                    num++
+                }
+                return num
+            }
+        }
+
+        //测试
+        var hash = new HashTable()
+        hash.put('cats', 3)
+        hash.put('dogs', 5)
+        hash.put('mice', 8)
+        hash.put('pigs', 1)
+        hash.put('cows', 1)
+        hash.put('sheep', 4)
+        hash.put('wolf', 7)
+        hash.put('owl', 9)
+
+        console.log(hash.get('cats'))
+        console.log(hash.get('dogs'))
+        console.log(hash.get('mice'))
+        console.log(hash.get('pigs'))
+
+        hash.remove('cats')
+        console.log(hash.get('cats'))
+    </script>
+</body>
+
+</html>

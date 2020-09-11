@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Promise.all 等待所有都完成（或第一个失败）
+        var p1 = Promise.resolve(3);
+        var p2 = 1337;
+        var p3 = new Promise((resolve, reject) => {
+            setTimeout(resolve, 2000, 'foo');
+        });
+
+        Promise.all([p1, p2, p3]).then(values => {
+            console.log(values); // [3, 1337, "foo"] 
+        });
+
+
+        //一个页面聊天系统，我们需要从两个不同的URL分别获得用户的个人信息和好友列表，
+        //这两个任务是可以并行执行的，用Promise.all()实现如下
+        var p1 = new Promise(function(resolve, reject) {
+            setTimeout(resolve, 500, 'P1');
+        });
+        var p2 = new Promise(function(resolve, reject) {
+            setTimeout(resolve, 600, 'P2');
+        });
+        // 同时执行p1和p2，并在它们都完成后执行then:
+        Promise.all([p1, p2]).then(function(results) {
+            console.log(results); // 获得一个Array: ['P1', 'P2']
+        });
+    </script>
+</body>
+
+</html>

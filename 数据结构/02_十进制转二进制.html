@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Stack() {
+            this.items = [];
+            Stack.prototype.push = function(element) {
+                this.items.push(element)
+            };
+            Stack.prototype.pop = function() {
+                return this.items.pop()
+            };
+            Stack.prototype.peek = function() {
+                return this.items[this.items.length - 1]
+            };
+            Stack.prototype.isEmpty = function() {
+                return this.items.length == 0
+            };
+            Stack.prototype.size = function() {
+                return this.items.length
+            };
+            Stack.prototype.toString = function() {
+                return this.items.join(' ')
+            }
+        }
+        // 十进制转二进制函数的封装
+        function dec2bin(decNumber) {
+            //1.定义栈对象保存余数
+            var stack = new Stack()
+            while (decNumber > 0) {
+                stack.push(decNumber % 2)
+                decNumber = Math.floor(decNumber / 2)
+            }
+            var binString = ''
+            while (!stack.isEmpty()) {
+                binString += stack.pop()
+            }
+            return binString
+        }
+        //函数使用测试
+        console.log(dec2bin(37))
+        console.log(dec2bin(15))
+    </script>
+</body>
+
+</html>

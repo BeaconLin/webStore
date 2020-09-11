@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // mySort()能使传入的参数按照从小到大的顺序显示出来。
+        function mySort() {
+            var tags = new Array();
+            // 函数内部获取传入参数的伪数组
+            tags = Array.prototype.slice.call(arguments)
+            for (var i = 0; i < tags.length; i++) {
+                for (var j = 0; j < tags.length - i - 1; j++) {
+                    if (tags[j] > tags[j + 1]) {
+                        [tags[j], tags[j + 1]] = [tags[j + 1], tags[j]]
+                    }
+                }
+            }
+            return tags
+        }
+        //测试
+        var sortArr = mySort(2, 5, 4, 1, 7, 6, 4)
+        console.log(sortArr)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        div {
+            margin: 10px;
+        }
+        
+        button {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 表单验证 -->
+    <form action="" onsubmit="return checkForm()">
+        <div class="form-group">
+            <span>昵称：</span>
+            <input type="text" id="username">
+            <label for="" id="userName"></label>
+        </div>
+        <div class="form-group">
+            <span>邮箱：</span>
+            <input type="text" id="emai">
+        </div>
+        <div class="form-group">
+            <span>密码：</span>
+            <input type="password" id="password">
+        </div>
+        <button id="btn">表单验证</button>
+    </form>
+
+    <script type="text/javascript">
+        function checkForm() {
+            //1.用户名的非空判断
+            var username = document.getElementById('username')
+            var userMsg = document.getElementById('userName')
+            var reg1 = /^\s*$/; //如果有0或0以上数量的空白符，返回true
+            if (reg1.test(username.value)) {
+                userMsg.innerHTML = '用户名不能为空'
+                return false
+            } else {
+                return true
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log('-----------不同类型的加法运算----------');
+        //有String，则都转化为String；没有String则都转化为数字
+        console.log('没有字符串的：转化成数值类型计算')
+        console.log(5 / 0) //Infinity
+        console.log(-5 / 0) //-Infinity
+        console.log(1 + undefined) //NaN
+        console.log('有字符串的：转化成字符串进行拼接')
+        console.log("1" + "2") //'12'
+        console.log("1" + 23) //'123'
+        console.log(1234 + '') //'1234' 隐式转换
+        console.log("1" + undefined) //'1undefined'
+        console.log('-----------不同类型的减法运算----------');
+        console.log(1 - "1") //0  转化成数字相减
+        console.log(1 - "a") //NaN
+        console.log("1" - 1) //0
+        console.log("a" - 1) //NaN
+        console.log('-----------不同类型的乘法除法运算----------');
+        console.log(3 * '2') //6
+        console.log('2' * '3') //6
+        console.log(10 / '2') //5
+        console.log('10' / 2) //5
+        console.log('10' / '2') //5
+
+        // console.log(typeof Infinity)
+    </script>
+</body>
+
+</html>

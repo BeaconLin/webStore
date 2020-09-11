@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //对象解构
+        var obj = {
+            a: 'aaa',
+            b: 'bbb'
+        }
+        var a, b;
+        ({
+            a,
+            b
+        } = obj);
+        console.log(a, b);
+
+        //数组解构
+        var c, d;
+        [c, d] = ['ccc', 'ddd']
+        console.log(c, d)
+
+        //解构重命名
+        const object = {
+            num: 10
+        }
+        const {
+            num: otherNum
+        } = object;
+        console.log(otherNum)
+    </script>
+</body>
+
+</html>

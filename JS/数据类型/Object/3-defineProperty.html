@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //定义新属性 或 修改原属性
+        var obj = {
+            name: '小明',
+            age: 18,
+            sex: "男",
+            tel: "18911450210"
+        }
+        console.log(obj.name)
+        Object.defineProperty(obj, "name", {
+            value: "小智",
+            //没有赋值 则为undefined
+            writable: true
+        })
+        console.log(obj.name);
+        //一些defineProperty中的可选项
+        // writable: 值是否可以重写。  false | true
+        // enumerable：是否可以被枚举（使用for…in或Object.keys()） false | true
+        // configurable：是否可以删除（delete）目标属性或是否可以再次修改属性的特性 false | true
+
+        //getter和setter 分别在取值和设置值的时候触发
+
+        Object.defineProperty(obj, "age", {
+            get: function() {
+                console.log('getter')
+                return 66
+            },
+            set: function(value) {
+                console.log('setter')
+                console.log(value)
+            }
+        })
+        console.log(obj.age) //getter 66
+        obj.age = 100 //100
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // str:字符串
+        // size:哈希表的长度（范围）
+        function hashFunc(str, size) {
+            //1.定义hashCode变量
+            var hashCode = 0
+                //2.霍纳法则
+            for (var i = 0; i < str.length; i++) {
+                hashCode = 37 * hashCode + str.charCodeAt(i)
+            }
+            //3.取余操作
+            var index = hashCode % size
+            return index
+        }
+
+        alert(hashFunc('abc', 7))
+    </script>
+</body>
+
+</html>

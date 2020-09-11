@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Object.is('foo', 'foo'); // true
+        Object.is(window, window); // true
+
+        Object.is('foo', 'bar'); // false
+        Object.is([], []); // false
+
+        var foo = {
+            a: 1
+        };
+        var bar = {
+            a: 1
+        };
+        Object.is(foo, foo); // true
+        Object.is(foo, bar); // false
+
+        Object.is(null, null); // true
+
+        // 特例
+        Object.is(0, -0); // false
+        Object.is(-0, -0); // true
+        Object.is(NaN, 0 / 0); // true
+        Object.is(NaN, NaN) //true
+    </script>
+</body>
+
+</html>

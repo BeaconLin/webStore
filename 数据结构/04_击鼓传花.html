@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Queue() {
+            this.items = [];
+            Queue.prototype.enqueue = function(element) {
+                this.items.push(element)
+
+            };
+            Queue.prototype.dequeue = function(element) {
+                return this.items.shift()
+            };
+            Queue.prototype.front = function(element) {
+                return this.items[0]
+            };
+            Queue.prototype.isEmpty = function(element) {
+                return this.items.length == 0
+            };
+            Queue.prototype.size = function(element) {
+                return this.items.length
+            };
+            Queue.prototype.toString = function(element) {
+                return this.items.join(' ')
+            };
+        }
+        //击鼓传花
+        function passGame(nameList, num) {
+            var queue = new Queue();
+            //将所有人加入队列
+            nameList.forEach(item => {
+                queue.enqueue(item)
+            });
+            //循环数数 数到第num个删除
+            while (queue.size() > 1) {
+                // 先数num-1个
+                for (var i = 1; i < num; i++) {
+                    queue.enqueue(queue.dequeue())
+                };
+                // 第num次进行删除
+                queue.dequeue()
+            }
+            alert(queue.size())
+            var endName = queue.front()
+            return nameList.indexOf(endName)
+        }
+
+        var nameList = ['小明', '小兰', '小红', '小田', '小智']
+        var num = 3
+        alert(passGame(nameList, num))
+    </script>
+</body>
+
+</html>

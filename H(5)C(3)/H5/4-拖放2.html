@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .container {
+            height: 400px;
+            width: 300px;
+            border: 1px solid pink;
+        }
+        
+        .container>div {
+            height: 100px;
+            width: 200px;
+            background-color: #aaa;
+            margin: 10px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div draggable="true" ondragstart="drag(event)" id="drag1">1</div>
+        <div draggable="true" ondragstart="drag(event)" id="drag2">2</div>
+        <div draggable="true" ondragstart="drag(event)" id="drag3">3</div>
+    </section>
+    <script type="text/javascript">
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(event) {
+            // 根据拖拽元素的id， 将该元素设置为Text元素
+            event.dataTransfer.setData("Text", event.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            //得到被拖拽的元素Text
+            var data = ev.dataTransfer.getData("Text");
+            // ev.target这里是目标元素 section
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+</body>
+
+</html>

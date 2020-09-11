@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style type="text/css">
+        #div1 {
+            width: 198px;
+            height: 66px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+    <script type="text/javascript">
+        function allowDrop(ev) {
+            // 默认地，无法将数据/元素放置到其他元素中。
+            //如果需要设置允许放置，我们必须阻止对元素的默认处理方式
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("Text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("Text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <img id="drag1" src="images/背景cat.jpg" draggable="true" ondragstart="drag(event)" width="155" height="69" />
+
+</body>
+
+</html>

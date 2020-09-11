@@ -1,0 +1,16 @@
+<script>
+    // 执行顺序问题
+    let promise = new Promise(function(resolve, reject) {
+        console.log('Promise')
+        resolve()
+    })
+    promise.then(function() {
+        console.log('resolved')
+    })
+    console.log('Hello world')
+
+    //Promise -> Hello world -> resolved
+    //promise被建立的一瞬间会执行内部的同步指令 Promise
+    //然后调用外部的同步指令 Hello world
+    //当前脚本同步任务执行完毕，再执行回调函数resolve
+</script>

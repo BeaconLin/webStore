@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //栈的封装
+        function Stack() {
+            this.items = [];
+            //栈的操作
+
+            //相关操作
+            //1.元素入栈
+            Stack.prototype.push = function(element) {
+                this.items.push(element)
+            };
+            //2.栈中取出元素
+            Stack.prototype.pop = function() {
+                return this.items.pop()
+            };
+            //3.查看栈顶元素
+            Stack.prototype.peek = function() {
+                return this.items[this.items.length - 1]
+            };
+            //4.判断栈是否没空
+            Stack.prototype.isEmpty = function() {
+                return this.items.length == 0
+            };
+            //5.获取栈中元素个数
+            Stack.prototype.size = function() {
+                return this.items.length
+            };
+            //6.toString方法
+            Stack.prototype.toString = function() {
+                // var resStr = '';
+                // for (var i = 0; i < this.items.length; i++) {
+                //     resStr += this.items[i] + ' '
+                // }
+
+                return this.items.join(' ')
+            }
+        }
+        var s = new Stack();
+        //栈的使用
+        s.push(12)
+        s.push(14)
+        s.push(16)
+        s.push(18)
+        console.log(s)
+        console.log(s.peek())
+        console.log(s.size())
+        console.log(s.isEmpty())
+        var s1 = s.toString()
+        console.log(s1)
+    </script>
+</body>
+
+</html>

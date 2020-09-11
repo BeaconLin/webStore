@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var aaa
+        var obj = new Object()
+        var arr = [1, 2, 3]
+        var set = new Set()
+
+        function fn() {
+            console.log('hello world')
+        }
+        console.log('---------------------------------------');
+        //typeof只有5种结果
+        console.log(typeof(null)) //object
+        console.log(typeof(123))
+        console.log(typeof(true))
+        console.log(typeof(aaa));
+        // console.log(typeof(undefined))
+        console.log(typeof(obj))
+        console.log(typeof(fn));
+        console.log(typeof(NaN));
+        console.log('---------------------------------------');
+        //数组判断两种方法
+        console.log(typeof(arr)); //arr是对象Object
+        console.log(Array.isArray(arr))
+        console.log(arr instanceof Array);
+        console.log('---------------------------------------');
+        //instanceof判断实例是否属于某构造函数
+        console.log(obj instanceof Object)
+        console.log(arr instanceof Array)
+        console.log(set instanceof Set)
+        console.log(fn instanceof Function)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = {};
+        var b = {
+            name: "ZS"
+        };
+        var c = {};
+        c[a] = "demo1";
+        c[b] = "demo2";
+
+        console.log(c[a]); //"demo2"
+        console.log(c); // [object Object]: "demo2"
+
+        console.log(a.toString()); // [object Object]
+        // c[a]和c[b]操作的时候，隐式地对ab使用了toString 
+        console.log(a.toString() === b.toString()); //true
+        //所以c[b]被复写进了c
+    </script>
+</body>
+
+</html>

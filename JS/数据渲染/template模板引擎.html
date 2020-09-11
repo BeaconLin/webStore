@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="wp">
+        <script type="text/template">
+            <%for(var i=0; i < list.length; i++ ){%>
+                <div>姓名：
+                    <%:=list[i].name%>
+                </div>
+                <!-- <div>时间：
+                    <%:=list[i].time%>
+                </div> -->
+                <%}%>
+        </script>
+    </div>
+    <script src="js/template.js"></script>
+    <script type="text/javascript">
+        var list = [{
+            name: "小张",
+            time: "12:22"
+        }, {
+            name: "小刘",
+            time: "12:22"
+        }, {
+            name: "小李",
+            time: "12:22"
+        }, {
+            name: "小孙",
+            time: "12:22"
+        }, {
+            name: "小周",
+            time: "12:22"
+        }]
+    </script>
+</body>
+
+</html>

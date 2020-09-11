@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="dict.js"></script>
+    <script>
+        // 邻接表图结构
+        function Graph() {
+            // 顶点 用数组表示
+            // 边 用字典表示 
+            this.vertexes = [];
+            this.edges = new Dictionary()
+
+            // 1- 添加顶点
+            Graph.prototype.addVertex = function(v) {
+                this.vertexes.push(v)
+                this.edges.set(v, [])
+                console.log('success')
+            };
+            // 2- 添加边 无向图
+            Graph.prototype.addEdge = function(v1, v2) {
+                this.edges.get(v1).push(v2)
+                this.edges.get(v2).push(v1)
+            };
+            // 3- toString
+            Graph.prototype.toString = function() {
+                var resultString = '';
+                for (var i = 0; i < this.vertexes.length; i++) {
+                    resultString += this.vertexes[i] + ' -> '
+                    var vEdges = this.edges.get(this.vertexes[i])
+                    for (var j = 0; j < vEdges.length; j++) {
+                        resultString += vEdges[j] + ' '
+                    }
+                    resultString += '\n'
+                }
+                return resultString
+            };
+
+        }
+
+        // 测试
+        var grap = new Graph()
+        var myVertexes = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+        for (var i = 0; i < myVertexes.length; i++) {
+            grap.addVertex(myVertexes[i])
+        }
+        grap.addEdge('A', 'B');
+        grap.addEdge('A', 'C');
+        grap.addEdge('A', 'D');
+        grap.addEdge('B', 'E');
+        grap.addEdge('B', 'F');
+        grap.addEdge('C', 'D');
+        grap.addEdge('C', 'G');
+        grap.addEdge('D', 'G');
+        console.log(grap.toString())
+    </script>
+</body>
+
+</html>

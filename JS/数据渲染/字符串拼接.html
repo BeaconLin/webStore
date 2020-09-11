@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery渲染数据</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="" class="id-w">
+            <div id="">昵称</div>
+            <div id="">时间</div>
+        </div>
+    </div>
+    <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
+    <script type="text/javascript">
+        var list = [{
+            name: "小张",
+            time: "12:22"
+        }, {
+            name: "小刘",
+            time: "12:22"
+        }, {
+            name: "小李",
+            time: "12:22"
+        }, {
+            name: "小孙",
+            time: "12:22"
+        }, {
+            name: "小周",
+            time: "12:22"
+        }]
+        var cent = document.querySelector("#main")
+            // console.log(cent)
+        for (var i = 0; i < list.length; i++) {
+            cent.innerHTML += "<div id='' class='id-w'>" +
+                "<div id=''>" + list[i].name + "</div>" +
+                "<div id=''>" + list[i].time + "</div></div>"
+        }
+    </script>
+</body>
+
+</html>

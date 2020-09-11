@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 转换Number
+        console.log('-----------Number转换----------')
+        console.log(Number(undefined)) //NaN
+        console.log(Number(null)) //0
+        console.log(Number(false)) // 0
+        console.log(Number(true)) //1
+        console.log(Number('123')) //123数字
+        console.log(Number('hello')); //NaN
+        var s = '666'
+        var i = new Number(s)
+        console.log(i)
+        console.log(parseInt('abc')) //NaN
+        console.log(parseInt('123abc')) //123
+        console.log(parseInt('123')); //123
+        // 注意纯数字字符串和非数字字符串的区别
+
+        console.log('-----------String转换----------')
+        console.log(String(undefined)) //'undefined' 以下都一样
+        console.log(String(null))
+        console.log(String(false))
+        console.log(String(true))
+        console.log(String(800))
+        console.log(String(NaN)) //'NaN'
+        var x = 1001;
+        console.log(x.toString()) //另一种转换方法
+    </script>
+</body>
+
+</html>

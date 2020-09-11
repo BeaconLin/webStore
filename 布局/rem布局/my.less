@@ -1,0 +1,19 @@
+@color888:#888;
+@color333:#333;
+div{
+    height: 50px;
+    width: 50px;
+}
+div:nth-child(2n+1){
+    background-color: @color888;
+}
+div:nth-child(2n){
+    background-color: @color333;
+}
+  //伪类，交集选择器，伪元素选择器  内层选择器前面要加&
+  .nav{
+      &::before{
+          content: "";
+      }
+  }
+

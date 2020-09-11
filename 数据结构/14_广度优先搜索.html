@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="dict.js"></script>
+    <script src="queue.js"></script>
+    <script>
+        // 邻接表图结构
+        function Graph() {
+            // 顶点 用数组表示
+            // 边 用字典表示 
+            this.vertexes = [];
+            this.edges = new Dictionary()
+
+            // 1- 添加顶点
+            Graph.prototype.addVertex = function(v) {
+                this.vertexes.push(v)
+                this.edges.set(v, [])
+            };
+            // 2- 添加边 无向图
+            Graph.prototype.addEdge = function(v1, v2) {
+                this.edges.get(v1).push(v2)
+                this.edges.get(v2).push(v1)
+            };
+            // 3- toString
+            Graph.prototype.toString = function() {
+                var resultString = '';
+                for (var i = 0; i < this.vertexes.length; i++) {
+                    resultString += this.vertexes[i] + ' -> '
+                    var vEdges = this.edges.get(this.vertexes[i])
+                    for (var j = 0; j < vEdges.length; j++) {
+                        resultString += vEdges[j] + ' '
+                    }
+                    resultString += '\n'
+                }
+                return resultString
+            };
+            // 5- 初始化状态颜色
+            Graph.prototype.initialColor = function() {
+                var colors = [];
+                for (var i = 0; i < this.vertexes.length; i++) {
+                    colors[this.vertexes[i]] = 'white'
+                }
+                return colors
+            }
+
+            // 4- BFS遍历方法 initV是开始的顶点
+            Graph.prototype.bfs = function(initV, handler) {
+                colors = this.initialColor() //全顶点初始化为白色
+                var queue = new Queue()
+                queue.enqueue(initV) // 顶点加入队列
+                while (!queue.isEmpty()) {
+                    var v = queue.dequeue() //拿到队列最前元素 并删除当前元素
+                    var vList = this.edges.get(v) //拿到v相连的顶点集合
+                    colors[v] = 'gray' //访问未探索的状态
+                    for (var i = 0; i < vList.length; i++) {
+                        var e = vList[i] //取出一个顶点
+                        if (colors[e] == 'white') {
+                            colors[e] = 'gray' // 未访问过的顶点设置为灰色，防止后续被二次访问
+                            queue.enqueue(e) // 元素加入队列
+                        }
+                    }
+                    //访问顶点
+                    handler(v);
+                    //变更颜色
+                    colors[v] = 'black'
+
+                }
+            }
+
+            // 5- 深度优先搜索 dfs
+            Graph.prototype.dfs = function(initV, handler) {
+                var colors = this.initialColor()
+                this.dfsVisit(initV, colors, handler)
+            };
+            // dfs 递归函数
+            Graph.prototype.dfsVisit = function(v, colors, handler) {
+                colors[v] = 'grey' //访问未探索
+                handler(v)
+                var vList = this.edges.get(v)
+                for (var i = 0; i < vList.length; i++) {
+                    var e = vList[i] //取出相邻节点
+                    if (colors[e] == 'white') {
+                        this.dfsVisit(e, colors, handler)
+                    }
+                }
+                colors[v] = 'black'
+            };
+
+        }
+
+        // 测试
+        var grap = new Graph()
+        var myVertexes = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+        for (var i = 0; i < myVertexes.length; i++) {
+            grap.addVertex(myVertexes[i])
+        }
+        grap.addEdge('A', 'B');
+        grap.addEdge('A', 'C');
+        grap.addEdge('A', 'D');
+        grap.addEdge('B', 'E');
+        grap.addEdge('B', 'F');
+        grap.addEdge('C', 'D');
+        grap.addEdge('C', 'G');
+        grap.addEdge('D', 'G');
+        console.log(grap.toString());
+        //测试bfs
+        var bfsResult = ''
+        grap.bfs(grap.vertexes[0], function(v) {
+            bfsResult += v + ' '
+        })
+        console.log(bfsResult);
+        //测试dfs
+        var dfsResult = ''
+        grap.dfs(grap.vertexes[0], function(v) {
+            dfsResult += v + ' '
+        })
+        console.log(dfsResult);
+    </script>
+</body>
+
+</html>
